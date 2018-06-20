@@ -40,14 +40,14 @@ Class Callbacks {
 	}
 
 	/**
-	 * Add a callback url
+	 * Create a callback url
 	 *
 	 * @param $url
 	 * @param $category
 	 *
 	 * @return bool
 	 */
-	public function add($url, $category = 'MUTATION')
+	public function create($url, $category = 'MUTATION')
 	{
 		if($this->exists($url)){
 			return true;
@@ -66,13 +66,13 @@ Class Callbacks {
 	}
 
 	/**
-	 * Remove a callback url
+	 * Delete a callback url
 	 *
 	 * @param $url
 	 *
 	 * @return bool
 	 */
-	public function remove($url)
+	public function delete($url)
 	{
 		if(!$this->exists($url)){
 			return true;

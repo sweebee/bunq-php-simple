@@ -13,6 +13,7 @@ Class bunqApi {
 	 * bunqApi constructor.
 	 */
 	public function __construct($config_file) {
+
 		// Set the api
 		$this->apiContext = ApiContext::restore($config_file);
 

@@ -8,7 +8,7 @@
  *
  *  @author yourname
  */
-class bunqApiTest extends PHPUnit_Framework_TestCase{
+class bunqApiTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Just check if the ExpoNotification has no syntax error
