@@ -2,6 +2,7 @@
 
 namespace Wiebenieuwenhuis;
 
+use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\Payment as bunqPayment;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
@@ -15,7 +16,7 @@ Class Payments {
 	 *
 	 * @param $bunqApi
 	 */
-	public function __construct($bunqApi)
+	public function __construct(bunqApi $bunqApi)
 	{
 		$this->bunqApi = $bunqApi;
 	}
@@ -24,6 +25,10 @@ Class Payments {
 	 * Get all payments from an account
 	 *
 	 * @param $account_id
+	 * @param array $params
+	 * @param array $customHeaders
+	 *
+	 * @return array|bunqPayment[]
 	 */
 	public function all($account_id, $params = [], $customHeaders = [])
 	{
@@ -36,7 +41,7 @@ Class Payments {
 	 * @param $account_id
 	 * @param $payment_id
 	 *
-	 * @return \bunq\Model\Generated\Endpoint\BunqResponsePayment
+	 * @return bunqPayment
 	 */
 	public function get($account_id, $payment_id)
 	{
@@ -61,7 +66,7 @@ Class Payments {
 		];
 
 		// Execute the payment
-		return bunqPayment::create($this->bunqApi->apiContext, $paymentMap, $this->bunqApi->user->getId(), $this->getAccount($from_account), $customHeaders)->getValue();
+		return bunqPayment::create($this->bunqApi->apiContext, $paymentMap, $this->bunqApi->user->getId(), $this->getAccountID($from_account), $customHeaders)->getValue();
 	}
 
 	/**
@@ -95,10 +100,13 @@ Class Payments {
 		}
 	}
 
+
 	/**
+	 * @param MonetaryAccountBank|int $account
+	 *
 	 * @return int
 	 */
-	private function getAccount($account)
+	private function getAccountID($account)
 	{
 		if(is_object($account) && get_class($account) == 'bunq\Model\Generated\Endpoint\MonetaryAccountBank'){
 			return $account->getId();
@@ -123,6 +131,6 @@ Class Payments {
 		if(is_object($data['recipient']) && get_class($data['recipient']) == 'bunq\Model\Generated\Endpoint\MonetaryAccountBank'){
 			return $data['recipient']->getAlias()[0];
 		}
-		return $this->bunqApi->account($data['recipient'])->getAlias()[0];
+		return $this->bunqApi->accounts->get($data['recipient'])->getAlias()[0];
 	}
 }

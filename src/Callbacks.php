@@ -9,7 +9,7 @@ Class Callbacks {
 
 	private $bunqApi;
 
-	public function __construct($bunqApi) {
+	public function __construct(bunqApi $bunqApi) {
 		$this->bunqApi = $bunqApi;
 	}
 
