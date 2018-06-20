@@ -2,6 +2,10 @@
 Simple wrapper for the bunq php sdk, for now just some basic functions.
 
 ### Installation
+
+```
+composer require wiebenieuwenhuis/bunq-php-simple
+```
 Before you can use it, you need to setup the configuration. Run the following command in your terminal:
 
 ```
