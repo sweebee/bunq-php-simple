@@ -1,0 +1,25 @@
+{
+  "name": "wiebenieuwenhuis/bunq-php-simple",
+  "description": "An easier PHP SDK for the bunq API",
+  "keywords": ["bunq"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wiebe Nieuwenhuis",
+      "email": "info@wiebenieuwenhuis.nl"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.0",
+    "bunq/sdk_php": "^0.12.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wiebenieuwenhuis\\": "src/"
+    }
+  }
+}
